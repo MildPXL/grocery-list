@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="component.css">
+  <link rel="stylesheet" href="app.css">
+  <title>Shopping Lists</title>
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="brand brand-dashboard">Notory</h2>
+        <img src="Images/arrow-bar-to-left.svg" alt="collapsed-icon">
+      </div>
+
+      <div class="sidebar-content">
+            <nav class="menu">
+                <a href="#" class="menu-item active">
+                <span><img src="Images/home icon.svg" alt="dashboard-icon"></span> Shopping Lists 
+                </a>
+                <a href="#" class="menu-item">
+                <span><img src="Images/delete.svg" alt=""></span> Delete
+                </a>
+          </nav>
+
+            <div class="sidebar-footer">
+                <a href="#" class="menu-item">
+                    <span><img src="Images/support.svg" alt="support"></span> Support
+                </a>
+                <a href="#" class="menu-item menu-settings">
+                    <span><img src="Images/support.svg" alt=""></span> Settings
+                </a>
+                <img class="divider" src="Images/Divider.svg" alt="">
+                <a href="#" class="menu-item">
+                   <span><img src="Images/log-out.svg" alt=""></span> Logout
+                </a>
+            </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main-content">
+      <header class="top-bar">
+        <h3 class="welcome-text">Hey Precious 👋</h3>
+        <div class="user-actions">
+          <div class="avatar">
+            <img src="Images/img.svg" alt="avatar">
+          </div>
+          <div class="notification-dot">
+            <img src="Images/Notification 3.svg" alt="notification">
+          </div>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="content-header">
+          <h1 class="header-text">Shopping Lists</h1>
+          <p class="breadcrumb">Home / Shopping List</p>
+        </div>
+
+        <button class="create-btn"> 
+          <img src="Images/plus icon.svg" alt="plus icon">
+          Add products
+        </button>
+      </section>
+      <div class="content-center">
+        <img class="img-center" src="Images/handcenter.svg" alt="">
+        <div class="dashboard-center-text">
+          <h2 class="content-text">Let’s plan your shopping!</h2>
+          <h3 class="content-text2">Use the button to create a new list</h3>
+        </div>
+      </div>
+
+      
+    </main>
+  </div>
+
+
+<!-- MODAL -->
+  <div class="modal-overlay" id="newListModal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h3 class="modal-title">New List</h3>
+              <button class="modal-close" id="closeModal">&times;</button>
+          </div>
+          <div class="modal-body">
+              <input type="text" class="modal-input" placeholder="Enter folder name">
+          </div>
+          <div class="modal-footer">
+              <button class="btn-cancel" id="cancelBtn">Cancel</button>
+              <button class="btn-done" id="doneBtn">Done</button>
+          </div>
+      </div>
+  </div>
+</body>
+
+<script>
+  // Get elements
+const createBtn = document.querySelector('.create-btn'); // Your "Create new list" button
+const modal = document.getElementById('newListModal');
+const closeModal = document.getElementById('closeModal');
+const cancelBtn = document.getElementById('cancelBtn');
+const doneBtn = document.getElementById('doneBtn');
+const modalInput = document.querySelector('.modal-input');
+
+// Open modal
+createBtn.addEventListener('click', () => {
+    modal.classList.add('active');
+    modalInput.value = ''; // Clear input
+    modalInput.focus(); // Focus on input
+});
+
+// Close modal function
+function closeModalFunction() {
+    modal.classList.remove('active');
+}
+
+// Close modal on X button
+closeModal.addEventListener('click', closeModalFunction);
+
+// Close modal on Cancel button
+cancelBtn.addEventListener('click', closeModalFunction);
+
+// Close modal on clicking outside
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        closeModalFunction();
+    }
+});
+
+// Handle Done button
+doneBtn.addEventListener('click', () => {
+    const folderName = modalInput.value.trim();
+    if (folderName) {
+        // Do something with the folder name
+        console.log('New list created:', folderName);
+        closeModalFunction();
+    } else {
+        // Optionally show error if input is empty
+        modalInput.style.borderColor = 'red';
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModalFunction();
+    }
+});
+</script>
+</html>

@@ -1,0 +1,45 @@
+.btn{
+    display: flex;
+    width: 236px;
+    height: 56px;
+    padding: 12px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 100px;
+    background: #0A1207;
+}
+
+.btn-text{
+    color: #FFF;
+    text-align: center;
+    font-family: "DM Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.text{
+    color: #0A1207;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.brand{
+    color: #0A1207;
+    font-family: "Princess Sofia";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 48px;
+}
+
+.brand-dashboard{
+    font-size: 32px;
+    margin-bottom: 0;
+}
