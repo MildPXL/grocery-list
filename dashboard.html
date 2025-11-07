@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="component.css">
-  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="Style.css">
   <title>Shopping Lists</title>
 </head>
 <body>
@@ -61,12 +61,16 @@
       <section class="content">
         <div class="content-header">
           <h1 class="header-text">Shopping Lists</h1>
-          <p class="breadcrumb">Home / Shopping List</p>
+          <p class="breadcrumb"> 
+            <span class="breadcrumb-item active">Home </span>/
+            <span class="breadcrumb-item">Shopping List</span>  /
+            <span class="breadcrumb-item">Folders</span> 
+          </p>
         </div>
 
         <button class="create-btn"> 
           <img src="Images/plus icon.svg" alt="plus icon">
-          Add products
+          Create new lists
         </button>
       </section>
       <div class="content-center">
@@ -76,8 +80,6 @@
           <h3 class="content-text2">Use the button to create a new list</h3>
         </div>
       </div>
-
-      
     </main>
   </div>
 
@@ -98,60 +100,25 @@
           </div>
       </div>
   </div>
+
+      <!-- ADD PRODUCT MODAL -->
+    <div class="modal-overlay" id="addProductModal">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h3 class="modal-title">Add Product</h3>
+        <button class="modal-close" id="closeProductModal">&times;</button>
+        </div>
+        <div class="modal-body">
+        <input type="text" class="product-name" placeholder="Item Name">
+        <input type="number" class="product-quantity" placeholder="Quantity">
+        <textarea class="product-description" placeholder="Description"></textarea>
+        </div>
+        <div class="modal-footer">
+        <button class="btn-save" id="saveProductBtn">Save</button>
+        </div>
+    </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
-
-<script>
-  // Get elements
-const createBtn = document.querySelector('.create-btn'); // Your "Create new list" button
-const modal = document.getElementById('newListModal');
-const closeModal = document.getElementById('closeModal');
-const cancelBtn = document.getElementById('cancelBtn');
-const doneBtn = document.getElementById('doneBtn');
-const modalInput = document.querySelector('.modal-input');
-
-// Open modal
-createBtn.addEventListener('click', () => {
-    modal.classList.add('active');
-    modalInput.value = ''; // Clear input
-    modalInput.focus(); // Focus on input
-});
-
-// Close modal function
-function closeModalFunction() {
-    modal.classList.remove('active');
-}
-
-// Close modal on X button
-closeModal.addEventListener('click', closeModalFunction);
-
-// Close modal on Cancel button
-cancelBtn.addEventListener('click', closeModalFunction);
-
-// Close modal on clicking outside
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        closeModalFunction();
-    }
-});
-
-// Handle Done button
-doneBtn.addEventListener('click', () => {
-    const folderName = modalInput.value.trim();
-    if (folderName) {
-        // Do something with the folder name
-        console.log('New list created:', folderName);
-        closeModalFunction();
-    } else {
-        // Optionally show error if input is empty
-        modalInput.style.borderColor = 'red';
-    }
-});
-
-// Close modal with Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-        closeModalFunction();
-    }
-});
-</script>
 </html>
